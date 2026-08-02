@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#111111" />
+  <title>Routine</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1>Routine</h1>
+      <p>今日の15分を選ぶ</p>
+    </header>
+
+    <section id="home-screen" class="screen">
+      <div class="card">
+        <h2>部位</h2>
+        <div id="body-options" class="option-grid" aria-label="部位を選択">
+          <button class="option-button selected" data-group="body" data-value="骨盤">骨盤</button>
+          <button class="option-button" data-group="body" data-value="肩・背中">肩・背中</button>
+          <button class="option-button" data-group="body" data-value="股関節">股関節</button>
+          <button class="option-button" data-group="body" data-value="全身">全身</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>目的</h2>
+        <div id="purpose-options" class="option-grid" aria-label="目的を選択">
+          <button class="option-button selected" data-group="purpose" data-value="姿勢改善">姿勢改善</button>
+          <button class="option-button" data-group="purpose" data-value="ストレッチ">ストレッチ</button>
+          <button class="option-button" data-group="purpose" data-value="ダイエット">ダイエット</button>
+          <button class="option-button" data-group="purpose" data-value="疲労回復">疲労回復</button>
+        </div>
+      </div>
+
+      <button id="start-button" class="primary-button">START</button>
+    </section>
+
+    <section id="routine-screen" class="screen hidden">
+      <button id="back-button" class="text-button">← 選び直す</button>
+
+      <div class="card">
+        <div class="routine-title-row">
+          <div>
+            <p id="routine-label" class="eyebrow"></p>
+            <h2 id="routine-title">15分ルーティン</h2>
+          </div>
+          <div class="progress-badge"><span id="progress-value">0</span>%</div>
+        </div>
+
+        <div class="video-placeholder">
+          <span>▶</span>
+          <p>動画は次の改良で追加</p>
+        </div>
+
+        <div id="task-list" class="task-list"></div>
+
+        <div class="progress-track" aria-label="達成率">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+
+        <p id="complete-message" class="complete-message hidden">今日のRoutine完了！</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
