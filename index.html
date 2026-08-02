@@ -10,14 +10,17 @@
 <body>
   <main class="app">
     <header class="app-header">
-      <h1>Routine</h1>
-      <p>今日の15分を選ぶ</p>
+      <div>
+        <h1>Routine</h1>
+        <p>今日の15分を選ぶ</p>
+      </div>
+      <button id="calendar-button" class="header-button" type="button">カレンダー</button>
     </header>
 
     <section id="home-screen" class="screen">
       <div class="card">
         <h2>部位</h2>
-        <div id="body-options" class="option-grid" aria-label="部位を選択">
+        <div class="option-grid" aria-label="部位を選択">
           <button class="option-button selected" data-group="body" data-value="骨盤">骨盤</button>
           <button class="option-button" data-group="body" data-value="肩・背中">肩・背中</button>
           <button class="option-button" data-group="body" data-value="股関節">股関節</button>
@@ -27,7 +30,7 @@
 
       <div class="card">
         <h2>目的</h2>
-        <div id="purpose-options" class="option-grid" aria-label="目的を選択">
+        <div class="option-grid" aria-label="目的を選択">
           <button class="option-button selected" data-group="purpose" data-value="姿勢改善">姿勢改善</button>
           <button class="option-button" data-group="purpose" data-value="ストレッチ">ストレッチ</button>
           <button class="option-button" data-group="purpose" data-value="ダイエット">ダイエット</button>
@@ -35,11 +38,11 @@
         </div>
       </div>
 
-      <button id="start-button" class="primary-button">START</button>
+      <button id="start-button" class="primary-button" type="button">START</button>
     </section>
 
     <section id="routine-screen" class="screen hidden">
-      <button id="back-button" class="text-button">← 選び直す</button>
+      <button id="back-button" class="text-button" type="button">← 選び直す</button>
 
       <div class="card">
         <div class="routine-title-row">
@@ -48,11 +51,6 @@
             <h2 id="routine-title">15分ルーティン</h2>
           </div>
           <div class="progress-badge"><span id="progress-value">0</span>%</div>
-        </div>
-
-        <div class="video-placeholder">
-          <span>▶</span>
-          <p>動画は次の改良で追加</p>
         </div>
 
         <div id="task-list" class="task-list"></div>
@@ -64,7 +62,33 @@
         <p id="complete-message" class="complete-message hidden">今日のRoutine完了！</p>
       </div>
     </section>
+
+    <section id="calendar-screen" class="screen hidden">
+      <button id="calendar-back-button" class="text-button" type="button">← 戻る</button>
+      <div class="card">
+        <div class="calendar-header">
+          <button id="prev-month" class="month-button" type="button">‹</button>
+          <h2 id="calendar-title"></h2>
+          <button id="next-month" class="month-button" type="button">›</button>
+        </div>
+        <div class="weekdays">
+          <span>日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span>
+        </div>
+        <div id="calendar-grid" class="calendar-grid"></div>
+        <p class="calendar-note">数字の下に、その日の達成率を表示します。</p>
+      </div>
+    </section>
   </main>
+
+  <dialog id="video-dialog" class="video-dialog">
+    <div class="video-dialog-header">
+      <strong id="video-title">実演動画</strong>
+      <button id="close-video" class="close-button" type="button" aria-label="閉じる">×</button>
+    </div>
+    <div class="video-frame-wrap">
+      <iframe id="video-frame" title="トレーニング動画" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </dialog>
 
   <script src="script.js"></script>
 </body>
