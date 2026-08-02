@@ -1,312 +1,108 @@
-const menus = {
-  "骨盤": {
-    featuredVideoId: "UCiRFfsfa4A",
-    tasks: [
-      { name: "骨盤の前後傾", time: "3分", videoId: "UCiRFfsfa4A", query: "骨盤 前後傾 理学療法士 日本語" },
-      { name: "ヒップリフト", time: "4分", videoId: "MA9aiNCW9hA", query: "ヒップリフト 理学療法士 日本語" },
-      { name: "クラムシェル", time: "左右4分", videoId: "38NTzokW7a8", query: "クラムシェル 理学療法士 日本語" },
-      { name: "骨盤まわりストレッチ", time: "4分", videoId: "IhAi4PVeO-Q", query: "骨盤 ストレッチ 病院 日本語" }
-    ]
-  },
-  "首": {
-    featuredVideoId: null,
-    featuredQuery: "首 ストレッチ 理学療法士 日本語",
-    tasks: [
-      { name: "首の前後運動", time: "3分", query: "首 前後運動 理学療法士 日本語" },
-      { name: "首の側屈ストレッチ", time: "左右4分", query: "首 側屈 ストレッチ 理学療法士 日本語" },
-      { name: "肩甲骨寄せ", time: "4分", query: "肩甲骨 寄せる 運動 理学療法士 日本語" },
-      { name: "胸開きストレッチ", time: "4分", query: "胸開き ストレッチ 理学療法士 日本語" }
-    ]
-  },
-  "肩": {
-    featuredVideoId: "zj521H4boeI",
-    tasks: [
-      { name: "肩回し", time: "3分", query: "肩回し 理学療法士 日本語" },
-      { name: "肩甲骨の前後運動", time: "4分", videoId: "zj521H4boeI", query: "肩甲骨 運動 理学療法士 日本語" },
-      { name: "胸・肩ストレッチ", time: "4分", query: "胸 肩 ストレッチ 整形外科 日本語" },
-      { name: "背中ほぐし", time: "4分", query: "背中 ほぐし 理学療法士 日本語" }
-    ]
-  },
-  "腰": {
-    featuredVideoId: "IhAi4PVeO-Q",
-    tasks: [
-      { name: "骨盤ゆらし", time: "3分", videoId: "IhAi4PVeO-Q", query: "骨盤 ゆらし 腰痛 日本語" },
-      { name: "膝抱えストレッチ", time: "4分", query: "膝抱え ストレッチ 腰 理学療法士 日本語" },
-      { name: "膝倒し", time: "4分", query: "膝倒し 腰 ストレッチ 理学療法士 日本語" },
-      { name: "股関節ストレッチ", time: "4分", query: "腰痛 股関節 ストレッチ 理学療法士 日本語" }
-    ]
-  },
-  "体幹": {
-    featuredVideoId: "JqLJZRgGXBE",
-    tasks: [
-      { name: "ドローイン", time: "3分", query: "ドローイン 理学療法士 日本語" },
-      { name: "バードドッグ", time: "4分", query: "バードドッグ 理学療法士 日本語" },
-      { name: "初心者プランク", time: "4分", videoId: "lSKmC3kLT6w", query: "プランク 初心者 正しいフォーム 日本語" },
-      { name: "体幹ストレッチ", time: "4分", videoId: "JqLJZRgGXBE", query: "体幹 トレーニング 病院 日本語" }
-    ]
-  }
-};
+const dailyVideos=[
+{title:"全身の自重筋トレ",description:"初心者向け。器具なしで全身を動かす日です。",duration:"約10分",videoId:"6uQq4U2mDSQ"},
+{title:"首・肩を軽くするストレッチ",description:"デスクワークで固まりやすい首と肩をほぐします。",duration:"約10分",videoId:"TbpzWIfeU0k"},
+{title:"体幹プランクトレーニング",description:"腹部と体幹を中心に、自重でしっかり刺激します。",duration:"約8分",videoId:"EPiPNL8Azfs"},
+{title:"股関節ストレッチ",description:"股関節まわりをやさしく動かして整えます。",duration:"約10分",videoId:"SMOGOm-x5qI"},
+{title:"飛ばない全身有酸素運動",description:"マンションでも取り組みやすい全身運動です。",duration:"約19分",videoId:"9UX7XUBMJnc"},
+{title:"全身を鍛える自重トレーニング",description:"胸・腕・体幹・脚まで、器具なしで動かします。",duration:"約10分",videoId:"6CQ0rmeArg8"},
+{title:"寝る前のリラックスヨガ",description:"一週間の疲れをほぐす、やさしい回復日です。",duration:"約15分",videoId:"MAstgS8OwKM"}];
 
-const state = {
-  body: "骨盤",
-  purpose: "姿勢改善",
-  calendarDate: new Date()
-};
+const menus={
+"骨盤":{query:"骨盤 リセット ストレッチ 理学療法士 日本語",tasks:[["骨盤の前後傾","3分"],["ヒップリフト","4分"],["クラムシェル","左右4分"],["骨盤まわりストレッチ","4分"]]},
+"首":{query:"首 ストレッチ 理学療法士 日本語",tasks:[["首の前後運動","3分"],["首の側屈ストレッチ","左右4分"],["肩甲骨寄せ","4分"],["胸開きストレッチ","4分"]]},
+"肩":{query:"肩こり ストレッチ 理学療法士 日本語",videoId:"TbpzWIfeU0k",tasks:[["肩回し","3分"],["肩甲骨の前後運動","4分"],["胸・肩ストレッチ","4分"],["背中ほぐし","4分"]]},
+"腰":{query:"腰 ストレッチ 理学療法士 日本語",tasks:[["骨盤ゆらし","3分"],["膝抱えストレッチ","4分"],["膝倒し","4分"],["股関節ストレッチ","4分"]]},
+"体幹":{query:"体幹トレーニング 日本語 自重",videoId:"EPiPNL8Azfs",tasks:[["ドローイン","3分"],["バードドッグ","4分"],["初心者プランク","4分"],["体幹ストレッチ","4分"]]},
+"自重全身":{query:"全身 自重トレーニング 初心者 日本語",videoId:"6uQq4U2mDSQ",tasks:[["スクワット","3分"],["膝つき腕立て","3分"],["ヒップリフト","3分"],["バードドッグ","3分"],["プランク","3分"]]}};
 
-function dateKey(date = new Date()) {
-  const y = date.getFullYear();
-  const m = String(date.getMonth() + 1).padStart(2, "0");
-  const d = String(date.getDate()).padStart(2, "0");
-  return `routine-${y}-${m}-${d}`;
+const state={body:"骨盤",purpose:"姿勢改善",calendarDate:new Date()};
+const dialog=document.getElementById("video-dialog");
+const dateKey=(date=new Date())=>`routine-${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`;
+const getData=(date=new Date())=>{try{return JSON.parse(localStorage.getItem(dateKey(date))||"{}")}catch{return{}}};
+const saveData=data=>localStorage.setItem(dateKey(),JSON.stringify(data));
+const todayVideo=()=>dailyVideos[new Date().getDay()];
+const hideAll=()=>document.querySelectorAll(".screen").forEach(x=>x.classList.add("hidden"));
+
+function openVideo(title,id){
+ document.getElementById("video-title").textContent=title;
+ document.getElementById("video-frame").src=`https://www.youtube-nocookie.com/embed/${id}?rel=0`;
+ if(typeof dialog.showModal==="function") dialog.showModal(); else window.open(`https://www.youtube.com/watch?v=${id}`,"_blank");
 }
-
-function getDailyData(date = new Date()) {
-  try { return JSON.parse(localStorage.getItem(dateKey(date)) || "{}"); }
-  catch { return {}; }
+function closeVideo(){document.getElementById("video-frame").src="";if(dialog.open)dialog.close()}
+function renderHome(){
+ hideAll();document.getElementById("home-screen").classList.remove("hidden");
+ const v=todayVideo(),d=getData(),done=d._dailyComplete===true,now=new Date(),w=["日","月","火","水","木","金","土"];
+ document.getElementById("today-label").textContent=`${now.getMonth()+1}月${now.getDate()}日（${w[now.getDay()]}）`;
+ document.getElementById("daily-title").textContent=v.title;
+ document.getElementById("daily-description").textContent=v.description;
+ document.getElementById("daily-duration").textContent=v.duration;
+ const cb=document.getElementById("daily-complete-checkbox");cb.checked=done;
+ document.getElementById("daily-complete-label").classList.toggle("completed",done);
+ document.getElementById("daily-message").classList.toggle("hidden",!done);
+ updateTodayRate();
 }
-
-function saveDailyData(data) {
-  localStorage.setItem(dateKey(), JSON.stringify(data));
+function getRate(date){
+ const d=getData(date);if(d._dailyComplete===true)return 100;
+ const b=d._body;if(!b||!menus[b])return null;
+ const total=menus[b].tasks.length;
+ const done=menus[b].tasks.reduce((s,_,i)=>s+(d[`${b}-${i}`]===true?1:0),0);
+ return Math.round(done/total*100);
 }
+function updateTodayRate(){document.getElementById("today-rate").textContent=`${getRate(new Date())??0}%`}
 
-function formatToday() {
-  const now = new Date();
-  return `${now.getMonth() + 1}月${now.getDate()}日`;
+document.getElementById("daily-video-button").onclick=()=>{const v=todayVideo();openVideo(v.title,v.videoId)};
+document.getElementById("daily-complete-checkbox").onchange=e=>{const d=getData();d._dailyComplete=e.target.checked;d._dailyTitle=todayVideo().title;saveData(d);renderHome()};
+document.getElementById("choose-menu-button").onclick=()=>{hideAll();document.getElementById("choose-screen").classList.remove("hidden")};
+document.getElementById("choose-back-button").onclick=renderHome;
+document.querySelectorAll(".option-button").forEach(btn=>btn.onclick=()=>{const g=btn.dataset.group;document.querySelectorAll(`[data-group="${g}"]`).forEach(x=>x.classList.remove("selected"));btn.classList.add("selected");state[g]=btn.dataset.value});
+document.getElementById("start-button").onclick=openRoutine;
+document.getElementById("back-button").onclick=()=>{hideAll();document.getElementById("choose-screen").classList.remove("hidden")};
+document.getElementById("calendar-button").onclick=showCalendar;
+document.getElementById("calendar-back-button").onclick=renderHome;
+document.getElementById("prev-month").onclick=()=>changeMonth(-1);
+document.getElementById("next-month").onclick=()=>changeMonth(1);
+document.getElementById("close-video").onclick=closeVideo;
+dialog.onclick=e=>{if(e.target===dialog)closeVideo()};
+
+function openRoutine(){
+ hideAll();document.getElementById("routine-screen").classList.remove("hidden");
+ document.getElementById("routine-label").textContent=`${state.body}・${state.purpose}`;
+ renderTasks();
 }
-
-document.getElementById("today-label").textContent = `${formatToday()}の15分`;
-
-document.querySelectorAll(".option-button").forEach((button) => {
-  button.addEventListener("click", () => {
-    const group = button.dataset.group;
-    document.querySelectorAll(`[data-group="${group}"]`)
-      .forEach((item) => item.classList.remove("selected"));
-    button.classList.add("selected");
-    state[group] = button.dataset.value;
-  });
-});
-
-document.getElementById("start-button").addEventListener("click", openRoutine);
-document.getElementById("back-button").addEventListener("click", showHome);
-document.getElementById("calendar-button").addEventListener("click", showCalendar);
-document.getElementById("calendar-back-button").addEventListener("click", showHome);
-document.getElementById("prev-month").addEventListener("click", () => changeMonth(-1));
-document.getElementById("next-month").addEventListener("click", () => changeMonth(1));
-document.getElementById("close-video").addEventListener("click", closeVideo);
-document.getElementById("routine-video-button").addEventListener("click", openFeaturedVideo);
-
-const dialog = document.getElementById("video-dialog");
-dialog.addEventListener("click", (event) => {
-  if (event.target === dialog) closeVideo();
-});
-
-function hideAllScreens() {
-  document.querySelectorAll(".screen").forEach((screen) => screen.classList.add("hidden"));
+function renderTasks(){
+ const list=document.getElementById("task-list"),d=getData(),menu=menus[state.body];list.innerHTML="";
+ menu.tasks.forEach(([name,time],i)=>{
+  const card=document.createElement("div");card.className="task-card";
+  const label=document.createElement("label");label.className="task-main";
+  const cb=document.createElement("input");cb.type="checkbox";cb.checked=d[`${state.body}-${i}`]===true;
+  const text=document.createElement("span");text.className="task-text";text.innerHTML=`<span class="task-name">${name}</span><span class="task-time">${time}</span>`;
+  label.append(cb,text);if(cb.checked)card.classList.add("checked");
+  cb.onchange=()=>{const x=getData();x[`${state.body}-${i}`]=cb.checked;x._body=state.body;x._purpose=state.purpose;saveData(x);card.classList.toggle("checked",cb.checked);updateProgress()};
+  const media=document.createElement("div");media.className="media-buttons";
+  const vb=document.createElement("button");vb.className="media-button";vb.textContent="▶ 日本語動画";vb.onclick=()=>window.open(`https://www.youtube.com/results?search_query=${encodeURIComponent(name+" 正しいやり方 日本語 日本人")}`,"_blank");
+  const ib=document.createElement("button");ib.className="media-button";ib.textContent="フォーム画像";ib.onclick=()=>window.open(`https://www.google.com/search?tbm=isch&q=${encodeURIComponent(name+" 正しいフォーム 日本語")}`,"_blank");
+  media.append(vb,ib);card.append(label,media);list.append(card);
+ });
+ document.getElementById("routine-video-button").onclick=()=>menu.videoId?openVideo(`${state.body}メニュー`,menu.videoId):window.open(`https://www.youtube.com/results?search_query=${encodeURIComponent(menu.query)}`,"_blank");
+ updateProgress();
 }
-
-function showHome() {
-  hideAllScreens();
-  document.getElementById("home-screen").classList.remove("hidden");
-  updateTodaySummary();
+function updateProgress(){
+ const boxes=[...document.querySelectorAll("#task-list input")],done=boxes.filter(x=>x.checked).length,rate=boxes.length?Math.round(done/boxes.length*100):0;
+ document.getElementById("progress-value").textContent=rate;document.getElementById("progress-bar").style.width=`${rate}%`;
+ document.getElementById("complete-message").classList.toggle("hidden",rate!==100);updateTodayRate();
 }
-
-function openRoutine() {
-  hideAllScreens();
-  document.getElementById("routine-screen").classList.remove("hidden");
-  document.getElementById("routine-label").textContent = `${state.body}・${state.purpose}`;
-  renderTasks();
+function showCalendar(){hideAll();document.getElementById("calendar-screen").classList.remove("hidden");renderCalendar()}
+function changeMonth(n){state.calendarDate=new Date(state.calendarDate.getFullYear(),state.calendarDate.getMonth()+n,1);renderCalendar()}
+function renderCalendar(){
+ const y=state.calendarDate.getFullYear(),m=state.calendarDate.getMonth(),first=new Date(y,m,1).getDay(),last=new Date(y,m+1,0).getDate(),today=new Date(),grid=document.getElementById("calendar-grid");
+ document.getElementById("calendar-title").textContent=`${y}年 ${m+1}月`;grid.innerHTML="";
+ for(let i=0;i<first;i++){const e=document.createElement("div");e.className="calendar-day empty";grid.append(e)}
+ for(let day=1;day<=last;day++){
+  const date=new Date(y,m,day),rate=getRate(date),cell=document.createElement("div");cell.className="calendar-day";
+  if(y===today.getFullYear()&&m===today.getMonth()&&day===today.getDate())cell.classList.add("today");
+  if(rate===100)cell.classList.add("rate-full");else if(rate>=50)cell.classList.add("rate-medium");else if(rate>0)cell.classList.add("rate-light");
+  cell.innerHTML=`<span class="day-number">${day}</span><span class="day-rate">${rate==null?"":rate+"%"}</span>`;grid.append(cell);
+ }
 }
-
-function showCalendar() {
-  hideAllScreens();
-  document.getElementById("calendar-screen").classList.remove("hidden");
-  renderCalendar();
-}
-
-function renderTasks() {
-  const taskList = document.getElementById("task-list");
-  taskList.innerHTML = "";
-  const saved = getDailyData();
-  const selectedMenu = menus[state.body];
-
-  selectedMenu.tasks.forEach((task, index) => {
-    const card = document.createElement("div");
-    card.className = "task-card";
-
-    const main = document.createElement("label");
-    main.className = "task-main";
-
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.checked = Boolean(saved[`${state.body}-${index}`]);
-
-    const text = document.createElement("span");
-    text.className = "task-text";
-
-    const name = document.createElement("span");
-    name.className = "task-name";
-    name.textContent = task.name;
-
-    const time = document.createElement("span");
-    time.className = "task-time";
-    time.textContent = task.time;
-
-    text.append(name, time);
-    main.append(checkbox, text);
-
-    if (checkbox.checked) card.classList.add("checked");
-
-    checkbox.addEventListener("change", () => {
-      const latest = getDailyData();
-      latest[`${state.body}-${index}`] = checkbox.checked;
-      latest._body = state.body;
-      latest._purpose = state.purpose;
-      saveDailyData(latest);
-      card.classList.toggle("checked", checkbox.checked);
-      updateProgress();
-    });
-
-    const media = document.createElement("div");
-    media.className = "media-buttons";
-
-    const videoButton = document.createElement("button");
-    videoButton.type = "button";
-    videoButton.className = "media-button";
-    videoButton.textContent = task.videoId ? "▶ 日本語動画" : "▶ 日本語動画を検索";
-    videoButton.addEventListener("click", () => {
-      task.videoId ? openVideo(task.name, task.videoId) : openJapaneseVideoSearch(task.query);
-    });
-
-    const imageButton = document.createElement("button");
-    imageButton.type = "button";
-    imageButton.className = "media-button";
-    imageButton.textContent = "フォーム画像";
-    imageButton.addEventListener("click", () => openImageSearch(task.query));
-
-    media.append(videoButton, imageButton);
-    card.append(main, media);
-    taskList.appendChild(card);
-  });
-
-  updateProgress();
-}
-
-function updateProgress() {
-  const checkboxes = [...document.querySelectorAll("#task-list input[type='checkbox']")];
-  const completed = checkboxes.filter((item) => item.checked).length;
-  const rate = checkboxes.length ? Math.round((completed / checkboxes.length) * 100) : 0;
-
-  document.getElementById("progress-value").textContent = rate;
-  document.getElementById("progress-bar").style.width = `${rate}%`;
-  document.getElementById("complete-message").classList.toggle("hidden", rate !== 100);
-  updateTodaySummary();
-}
-
-function updateTodaySummary() {
-  const rate = getRateForDate(new Date());
-  document.getElementById("today-rate").textContent = `${rate ?? 0}%`;
-}
-
-function openFeaturedVideo() {
-  const menu = menus[state.body];
-  if (menu.featuredVideoId) {
-    openVideo(`${state.body} 15分メニュー`, menu.featuredVideoId);
-  } else {
-    openJapaneseVideoSearch(menu.featuredQuery || `${state.body} トレーニング 日本語`);
-  }
-}
-
-function openVideo(title, id) {
-  document.getElementById("video-title").textContent = title;
-  document.getElementById("video-frame").src =
-    `https://www.youtube-nocookie.com/embed/${id}?rel=0`;
-  if (typeof dialog.showModal === "function") dialog.showModal();
-  else window.open(`https://www.youtube.com/watch?v=${id}`, "_blank", "noopener");
-}
-
-function closeVideo() {
-  document.getElementById("video-frame").src = "";
-  if (dialog.open) dialog.close();
-}
-
-function openJapaneseVideoSearch(query) {
-  const q = `${query} 日本人 日本語 -英語`;
-  window.open(`https://www.youtube.com/results?search_query=${encodeURIComponent(q)}`, "_blank", "noopener");
-}
-
-function openImageSearch(query) {
-  const q = `${query} 日本語 フォーム`;
-  window.open(`https://www.google.com/search?tbm=isch&q=${encodeURIComponent(q)}`, "_blank", "noopener");
-}
-
-function changeMonth(offset) {
-  state.calendarDate = new Date(
-    state.calendarDate.getFullYear(),
-    state.calendarDate.getMonth() + offset,
-    1
-  );
-  renderCalendar();
-}
-
-function getRateForDate(date) {
-  const data = getDailyData(date);
-  const body = data._body;
-  if (!body || !menus[body]) return null;
-  const total = menus[body].tasks.length;
-  const completed = menus[body].tasks.reduce(
-    (sum, _, index) => sum + (data[`${body}-${index}`] === true ? 1 : 0), 0
-  );
-  return Math.round((completed / total) * 100);
-}
-
-function renderCalendar() {
-  const y = state.calendarDate.getFullYear();
-  const m = state.calendarDate.getMonth();
-  const firstDay = new Date(y, m, 1).getDay();
-  const lastDate = new Date(y, m + 1, 0).getDate();
-  const today = new Date();
-  const grid = document.getElementById("calendar-grid");
-
-  document.getElementById("calendar-title").textContent = `${y}年 ${m + 1}月`;
-  grid.innerHTML = "";
-
-  for (let i = 0; i < firstDay; i++) {
-    const empty = document.createElement("div");
-    empty.className = "calendar-day empty";
-    grid.appendChild(empty);
-  }
-
-  for (let day = 1; day <= lastDate; day++) {
-    const date = new Date(y, m, day);
-    const rate = getRateForDate(date);
-    const cell = document.createElement("div");
-    cell.className = "calendar-day";
-
-    if (y === today.getFullYear() && m === today.getMonth() && day === today.getDate()) {
-      cell.classList.add("today");
-    }
-
-    if (rate !== null) {
-      if (rate === 100) cell.classList.add("rate-full");
-      else if (rate >= 50) cell.classList.add("rate-medium");
-      else if (rate > 0) cell.classList.add("rate-light");
-    }
-
-    const number = document.createElement("span");
-    number.className = "day-number";
-    number.textContent = day;
-
-    const rateText = document.createElement("span");
-    rateText.className = "day-rate";
-    rateText.textContent = rate === null ? "" : `${rate}%`;
-
-    cell.append(number, rateText);
-    grid.appendChild(cell);
-  }
-}
-
-updateTodaySummary();
-
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js"));
-}
+renderHome();
+if("serviceWorker"in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js"));

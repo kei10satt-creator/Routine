@@ -1,47 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#111111" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Routine" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111111">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Routine">
   <title>Routine</title>
-  <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="apple-touch-icon" href="icons/icon-192.png" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main class="app">
     <header class="app-header">
       <div>
         <h1>Routine</h1>
-        <p id="today-label">今日の15分を選ぶ</p>
+        <p id="today-label"></p>
       </div>
-      <button id="calendar-button" class="header-button" type="button">カレンダー</button>
+      <button id="calendar-button" class="header-button">カレンダー</button>
     </header>
 
     <section id="home-screen" class="screen">
-      <div id="today-summary" class="summary-card">
-        <span>今日の達成率</span>
-        <strong id="today-rate">0%</strong>
+      <article class="today-card">
+        <p class="eyebrow">今日の1本</p>
+        <h2 id="daily-title"></h2>
+        <p id="daily-description" class="description"></p>
+        <div class="tags">
+          <span id="daily-duration"></span><span>日本語</span><span>器具なし</span>
+        </div>
+        <button id="daily-video-button" class="primary-button">▶ 動画を見て始める</button>
+        <label id="daily-complete-label" class="complete-box">
+          <input id="daily-complete-checkbox" type="checkbox">
+          <span><strong>今日の1本を完了</strong><small>終わったらチェック</small></span>
+        </label>
+        <p id="daily-message" class="message hidden">今日もお疲れさまでした！</p>
+      </article>
+
+      <div class="summary-card">
+        <span>今日の達成率</span><strong id="today-rate">0%</strong>
       </div>
+
+      <button id="choose-menu-button" class="secondary-button">別のメニューを自分で選ぶ</button>
+      <p class="safety-note">痛みやしびれが出た場合は中止してください。</p>
+    </section>
+
+    <section id="choose-screen" class="screen hidden">
+      <button id="choose-back-button" class="text-button">← 今日の1本へ戻る</button>
 
       <div class="card">
         <h2>部位を選ぶ</h2>
-        <div class="option-grid body-grid" aria-label="部位を選択">
+        <div class="option-grid body-grid">
           <button class="option-button selected" data-group="body" data-value="骨盤">骨盤</button>
           <button class="option-button" data-group="body" data-value="首">首</button>
           <button class="option-button" data-group="body" data-value="肩">肩</button>
           <button class="option-button" data-group="body" data-value="腰">腰</button>
           <button class="option-button" data-group="body" data-value="体幹">体幹</button>
+          <button class="option-button" data-group="body" data-value="自重全身">自重全身</button>
         </div>
       </div>
 
       <div class="card">
         <h2>目的</h2>
-        <div class="option-grid" aria-label="目的を選択">
+        <div class="option-grid">
           <button class="option-button selected" data-group="purpose" data-value="姿勢改善">姿勢改善</button>
           <button class="option-button" data-group="purpose" data-value="ストレッチ">ストレッチ</button>
           <button class="option-button" data-group="purpose" data-value="引き締め">引き締め</button>
@@ -49,67 +70,45 @@
         </div>
       </div>
 
-      <button id="start-button" class="primary-button" type="button">15分 START</button>
-      <p class="safety-note">痛みやしびれが出た場合は中止してください。</p>
+      <button id="start-button" class="primary-button">15分 START</button>
     </section>
 
     <section id="routine-screen" class="screen hidden">
-      <button id="back-button" class="text-button" type="button">← 選び直す</button>
-
+      <button id="back-button" class="text-button">← 選び直す</button>
       <div class="card">
-        <div class="routine-title-row">
-          <div>
-            <p id="routine-label" class="eyebrow"></p>
-            <h2 id="routine-title">15分ルーティン</h2>
-          </div>
-          <div class="progress-badge"><span id="progress-value">0</span>%</div>
+        <div class="routine-head">
+          <div><p id="routine-label" class="eyebrow"></p><h2>15分ルーティン</h2></div>
+          <div class="progress-circle"><span id="progress-value">0</span>%</div>
         </div>
-
-        <button id="routine-video-button" class="featured-video-button" type="button">
-          ▶ 日本語の実演動画を見る
-        </button>
-
+        <button id="routine-video-button" class="featured-button">▶ 日本語の実演動画を見る</button>
         <div id="task-list" class="task-list"></div>
-
-        <div class="progress-track" aria-label="達成率">
-          <div id="progress-bar" class="progress-bar"></div>
-        </div>
-
-        <p id="complete-message" class="complete-message hidden">今日のRoutine完了！</p>
+        <div class="progress-track"><div id="progress-bar" class="progress-bar"></div></div>
+        <p id="complete-message" class="message hidden">このメニューを完了！</p>
       </div>
     </section>
 
     <section id="calendar-screen" class="screen hidden">
-      <button id="calendar-back-button" class="text-button" type="button">← 戻る</button>
+      <button id="calendar-back-button" class="text-button">← 戻る</button>
       <div class="card">
-        <div class="calendar-header">
-          <button id="prev-month" class="month-button" type="button">‹</button>
+        <div class="calendar-head">
+          <button id="prev-month" class="month-button">‹</button>
           <h2 id="calendar-title"></h2>
-          <button id="next-month" class="month-button" type="button">›</button>
+          <button id="next-month" class="month-button">›</button>
         </div>
         <div class="weekdays">
           <span>日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span>
         </div>
         <div id="calendar-grid" class="calendar-grid"></div>
-        <div class="calendar-legend">
-          <span><i class="legend-dot light"></i>1〜49%</span>
-          <span><i class="legend-dot medium"></i>50〜99%</span>
-          <span><i class="legend-dot full"></i>100%</span>
-        </div>
       </div>
     </section>
   </main>
 
   <dialog id="video-dialog" class="video-dialog">
-    <div class="video-dialog-header">
-      <strong id="video-title">日本語の実演動画</strong>
-      <button id="close-video" class="close-button" type="button" aria-label="閉じる">×</button>
+    <div class="video-head">
+      <strong id="video-title"></strong>
+      <button id="close-video" class="close-button">×</button>
     </div>
-    <div class="video-frame-wrap">
-      <iframe id="video-frame" title="トレーニング動画"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
-    </div>
+    <div class="video-wrap"><iframe id="video-frame" allowfullscreen></iframe></div>
   </dialog>
 
   <script src="script.js"></script>
